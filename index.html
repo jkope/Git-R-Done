@@ -20,69 +20,25 @@
                 <span class="mdl-layout-title">Git 'R Dun</span>
             </div>
             <!-- Tabs -->
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-                <a href="#scroll-tab-1" class="mdl-layout__tab is-active">List 1</a>
-                <a href="#scroll-tab-2" class="mdl-layout__tab">List 2</a>
-                <a href="#scroll-tab-3" class="mdl-layout__tab">List 3</a>
-                <a href="#scroll-tab-4" class="mdl-layout__tab">List 4</a>
-                <a href="#scroll-tab-5" class="mdl-layout__tab">List 5</a>
-                <a href="#scroll-tab-6" class="mdl-layout__tab">List 6</a>
-                <button onclick="">+</button>
+            <div id='tabs' class="mdl-layout__tab-bar mdl-js-ripple-effect">
             </div>
         </header>
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title"></span>
             <!-- Drawer -->
-
+            <h3>Add New List</h3>
+            <input id='newListName' placeholder="List Title" type="text" >
+            <button id="newListBtn" >Create</button>
         </div>
-        <main class="mdl-layout__content">
+        <main id="pages" class="mdl-layout__content">
             <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
                 <div class="page-content">
                     <!-- Your content goes here -->
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Material</th>
-                                <th>Quantity</th>
-                                <th>Unit price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-                                <td>25</td>
-                                <td>$2.90</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-                                <td>50</td>
-                                <td>$1.25</td>
-                            </tr>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-                                <td>10</td>
-                                <td>$2.35</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </section>
             <section class="mdl-layout__tab-panel" id="scroll-tab-2">
                 <div class="page-content">
                     <!-- Your content goes here -->
-                    <ul class="demo-list-control mdl-list">
-                        <li class="mdl-list__item">
-                            <span class="mdl-list__item-primary-content">
-                                <i class="material-icons  mdl-list__item-avatar">person</i>
-                                Bryan Cranston
-                            </span>
-                            <span class="mdl-list__item-secondary-action">
-                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
-                                    <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
-                                </label>
-                            </span>
-                        </li>
-                    </ul>
                 </div>
             </section>
             <section class="mdl-layout__tab-panel" id="scroll-tab-3">
