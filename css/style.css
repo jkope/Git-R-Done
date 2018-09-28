@@ -17,6 +17,13 @@
     display: flex;
     margin: 10px;
 }
-.dlt:hover{
+.icon:hover{
     cursor: pointer;
+}
+form {
+    margin-right: 36px;
+    margin-left: 36px;
+}
+.entryline {
+    display: flex;
 }

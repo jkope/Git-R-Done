@@ -5,6 +5,7 @@ let listBtn = document.getElementById('newListBtn');
 let pages = document.getElementById('pages');
 let hTabs = '';
 let main = '';
+let page = '';
 
 
 function tabs(listNames) {
@@ -36,3 +37,14 @@ function deleteTask(task) {
     let line = document.getElementById(task);
     line.parentNode.removeChild(line);
 }
+function deleteList(e){
+    let list = document.getElementById(e);
+    list.parentNode.removeChild(list);
+    console.log('it works');
+    
+}
+
+function addTask() {
+    console.log('it works');
+}
+
