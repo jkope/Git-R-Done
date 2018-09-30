@@ -42,55 +42,57 @@
                                 <input class="mdl-textfield__input" type="text" id="newTask1">
                                 <label class="mdl-textfield__label" for="sample1">New Task...</label>
                             </div>
-                            <button  onclick="addTask()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <button  onclick="addTask('1')" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                                 <i class="material-icons">add</i>
                             </button>
                         </form>
                         <!-- list of tasks -->
-                        <div id="task1_1" class="task">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-                                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
-                                <span id="item1_1" class="mdl-checkbox__label">Do Laundry</span>
-                            </label>
-                            <i id='dlt1_1' onclick="deleteTask('task1_1')" class="material-icons icon">
-                                delete
-                            </i>
-                        </div>
-                        <div id="task1_2" class="task">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
-                                <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
-                                <span id="item1_2" class="mdl-checkbox__label">Do Laundry</span>
-                            </label>
-                            <i id='dlt1_2' onclick="deleteTask('task1_2')" class="material-icons icon">
-                                delete
-                            </i>
-                        </div>
-                        <div id="task1_3" class="task">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3">
-                                <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input">
-                                <span id="item1_3" class="mdl-checkbox__label">Do Laundry</span>
-                            </label>
-                            <i id='dlt1_3' onclick="deleteTask('task1_3')" class="material-icons icon">
-                                delete
-                            </i>
-                        </div>
-                        <div id="task1_4" class="task">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
-                                <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input">
-                                <span id="item1_4" class="mdl-checkbox__label">Do Laundry</span>
-                            </label>
-                            <i id='dlt1_4' onclick="deleteTask('task1_4')" class="material-icons icon">
-                                delete
-                            </i>
-                        </div>
-                        <div id="task1_5" class="task">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-5">
-                                <input type="checkbox" id="checkbox-5" class="mdl-checkbox__input">
-                                <span id="item1_5" class="mdl-checkbox__label">Do Laundry</span>
-                            </label>
-                            <i id='dlt1_5' onclick="deleteTask('task1_5')" class="material-icons icon">
-                                delete
-                            </i>
+                        <div id="taskListArea">
+                            <div id="task1_1" class="task">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                                    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                                    <span id="item1_1" class="mdl-checkbox__label">Do Laundry</span>
+                                </label>
+                                <i id='dlt1_1' onclick="deleteTask('task1_1')" class="material-icons icon">
+                                    delete
+                                </i>
+                            </div>
+                            <div id="task1_2" class="task">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+                                    <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
+                                    <span id="item1_2" class="mdl-checkbox__label">Do Laundry</span>
+                                </label>
+                                <i id='dlt1_2' onclick="deleteTask('task1_2')" class="material-icons icon">
+                                    delete
+                                </i>
+                            </div>
+                            <div id="task1_3" class="task">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3">
+                                    <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input">
+                                    <span id="item1_3" class="mdl-checkbox__label">Do Laundry</span>
+                                </label>
+                                <i id='dlt1_3' onclick="deleteTask('task1_3')" class="material-icons icon">
+                                    delete
+                                </i>
+                            </div>
+                            <div id="task1_4" class="task">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
+                                    <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input">
+                                    <span id="item1_4" class="mdl-checkbox__label">Do Laundry</span>
+                                </label>
+                                <i id='dlt1_4' onclick="deleteTask('task1_4')" class="material-icons icon">
+                                    delete
+                                </i>
+                            </div>
+                            <div id="task1_5" class="task">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-5">
+                                    <input type="checkbox" id="checkbox-5" class="mdl-checkbox__input">
+                                    <span id="item1_5" class="mdl-checkbox__label">Do Laundry</span>
+                                </label>
+                                <i id='dlt1_5' onclick="deleteTask('task1_5')" class="material-icons icon">
+                                    delete
+                                </i>
+                            </div>
                         </div>
                     <!-- delete whole tab -->
                         <button onclick="deleteList('scroll-tab-0')" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--red">
@@ -101,7 +103,7 @@
             </section>
         <!-- JavaScript is inserting HTML here to create a page for each tab -->
            
-            <section class="mdl-layout__tab-panel is-active"  id="scroll-tab">
+            <section class="mdl-layout__tab-panel"  id="scroll-tab">
                 <div class="page-content">
                     To create a new List click the Icon in the top left corner
                 </div>
