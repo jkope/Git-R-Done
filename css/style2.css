@@ -1,4 +1,46 @@
-a{
+body{
+    background-color: #fafafa;
+}
+.pad{
+   margin: 10px;
+}
+h3{
+    text-align: center;
+}
+.center {
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid black;
+    box-shadow: 5px 5px lightslategray;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    background-color: white;
+}
+.line {
+    border-bottom: 1px solid lightblue;
+    margin: 0;
+}
+.spread{
     display: flex;
     justify-content: space-between;
+}
+.listofNames{
+    padding: 20px 40px;
+    width: 100%;
+}
+.deleteList {
+    width: 100%;
+    background-color: white;
+    border: none;
+    color: red;
+    border-radius: 5px;
+}
+.deleteList:hover{
+    background-color: red;
+    color: white;
+}
+.newTask {
+    border: none;
+    width: 100%;
+    border-bottom: 2px solid darkgray;
 }

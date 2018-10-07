@@ -16,20 +16,23 @@ function tabs(listNames, exclude) {
     for (i = 0; i < listNames.length; i++) {
         hTabs +=
         `<a onclick='addTask(${i}, true)' class="list-group-item list-group-item-action ${i===listNames.length-1 ? 'active' : ''}" id="link-${i}" data-toggle="list" href="#l${i}"
-                role="tab" aria-controls="">${listNames[i]}<span id='badge${i}' class="badge badge-primary badge-pill"></span></a>`
-        main +=
+                role="tab" aria-controls=""><span id='badge${i}' class="badge badge-primary badge-pill pad"></span>${listNames[i]}</a>`
+                main +=
            `<div id="l${i}" class="tab-pane fade show ${i === listNames.length-1 ? 'show active' : ''}" role="tabpanel" aria-labelledby="list-home-list">
-           <div id="task${i}"> 
-            </div>
-                <div>
-                    <input type="text" placeholder="New Task..." id="newTask${i}">
-                </div>
-                    <button onclick="addTask('${i}')">
-                        ADD
+                <div class="center">
+                    <h3>${listNames[i]}</h3>
+                    <div id="task${i}"> 
+                    </div>
+                    <div>
+                        <input class="newTask" type="text" placeholder="New Task..." id="newTask${i}">
+                    </div>
+                        <button onclick="addTask('${i}')">
+                            ADD
+                        </button>
+                    <button onclick="deleteList('${i}')" class="deleteList">
+                        Delete List
                     </button>
-                <button onclick="deleteList('${i}')">
-                    Delete List
-                </button>
+                </div>    
             </div>`;
     };
     headerTabs.innerHTML = hTabs;
@@ -38,12 +41,16 @@ function tabs(listNames, exclude) {
     badges();
 }
 
+function listReturn(evt) {
+    (evt.keyCode === 13) ? NewList() : '';
+}
+listNameInput.addEventListener('keydown', listReturn);
 
-listBtn.addEventListener('click',  function(){
+function NewList(){
     listNames.push(listNameInput.value);
     listNameInput.value = '';
     tabs(listNames, false);
-});
+}
 
 function deleteTask(task, listnum, tasknum) {
     let line = document.getElementById(task);
@@ -57,6 +64,10 @@ function deleteList(i) {
     tabs(listNames, true);
     addTask(listNames.length-1, true);
 }
+// function taskReturn(evt) {
+//     (evt.keyCode === 13) ? addTask(/*I need to pass the id from the parent div*/) : '';
+// }
+// listNameInput.addEventListener('keydown', taskReturn);
 
 function addTask(listnum, exclude) {
     let newTaskId = 'newTask' + listnum;
@@ -67,10 +78,12 @@ function addTask(listnum, exclude) {
     for (let i = 0; i < taskList[listnum].length; i++) {
         
         taskListHtml +=
-            `<div id='${i}' class="form-group form-check">
+            `<div id='${i}' class="form-group form-check spread line">
                 <input type="checkbox" class="form-check-input" value='' id="check${listnum}-${i}">
                 <label class="form-check-label" for="check${i}">${taskList[listnum][i]}</label>
-                <button onclick='deleteTask(${i} ,${listnum}, ${i})' >Delete</button>
+                <div>
+                <i class="far fa-trash-alt" onclick='deleteTask(${i} ,${listnum}, ${i})'></i>
+                </div>
             </div>`;
     }
     document.getElementById('task'+listnum).innerHTML = taskListHtml;
