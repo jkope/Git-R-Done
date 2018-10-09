@@ -23,12 +23,9 @@ function tabs(listNames, exclude) {
                     <h3>${listNames[i]}</h3>
                     <div id="task${i}"> 
                     </div>
-                    <form onsubmit="addTask(${i})">
+                    <form onsubmit="addTask(${i}); return false">
                       <input class="newTask" type="text" placeholder="New Task..." id="newTask${i}">
                     </form>
-                        <button onclick="addTask(${i})">
-                            ADD
-                        </button>
                     <button onclick="deleteList(${i})" class="deleteList">
                         Delete List
                     </button>
@@ -67,6 +64,7 @@ function deleteList(i) {
 }
 
 function addTask(listnum, exclude) {
+    // console.log('adding task');
     let newTaskId = 'newTask' + listnum;
     let input = document.getElementById(newTaskId).value;
     let task = {title: input, isChecked: false};
@@ -92,8 +90,8 @@ function addTask(listnum, exclude) {
 
 function edit(listnum, i){
     document.getElementById('tasker').innerHTML =
-    `<form onsubmit="editTask(${listnum}, ${i})">
-        <input class="newTask" type="text" value="${taskList[listnum][i].title}">
+    `<form onsubmit="editTask(${listnum}, ${i}); return false">
+        <input  id="edit" class="newTask" type="text" value="${taskList[listnum][i].title}">
     </form>`
 
 }
