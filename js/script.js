@@ -22,6 +22,8 @@ function tabs(listNames, exclude) {
                 <div class="center">
                     <h3>${listNames[i]}</h3>
                     <div id="task${i}"> 
+                    <h5>Create a new task below.</h5>
+                    <h5>After a task has been created you can edit the task by double clicking on it.</h5>
                     </div>
                     <form onsubmit="addTask(${i}); return false">
                       <input class="newTask" type="text" placeholder="New Task..." id="newTask${i}">
@@ -64,7 +66,6 @@ function deleteList(i) {
 }
 
 function addTask(listnum, exclude) {
-    // console.log('adding task');
     let newTaskId = 'newTask' + listnum;
     let input = document.getElementById(newTaskId).value;
     let task = {title: input, isChecked: false};
@@ -76,7 +77,7 @@ function addTask(listnum, exclude) {
         taskListHtml +=
             `<div id='${i}' class="form-group form-check spread line">
                 <input type="checkbox" class="form-check-input" onclick="swap(${listnum},${i})" id="check${listnum}-${i}" ${taskList[listnum][i].isChecked ? 'checked' : ''}>
-                <div id="tasker">
+                <div id="tasker${i}">
                 <label class="form-check-label" onclick="edit(${listnum}, ${i})" for="check${i}">${taskList[listnum][i].title}</label>
                 </div>
                 <div>
@@ -89,7 +90,7 @@ function addTask(listnum, exclude) {
 };
 
 function edit(listnum, i){
-    document.getElementById('tasker').innerHTML =
+    document.getElementById('tasker'+i).innerHTML =
     `<form onsubmit="editTask(${listnum}, ${i}); return false">
         <input  id="edit" class="newTask" type="text" value="${taskList[listnum][i].title}">
     </form>`
