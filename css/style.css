@@ -1,41 +1,49 @@
-.list {
-    border:2px solid gray;
-    box-shadow: 10px 10px;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: auto;
+body{
+    background-color: #fafafa;
 }
-.side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.pad{
+   margin: 10px;
 }
-#newListName{
+h3{
+    text-align: center;
+}
+h2 {
+    margin: 100px;
+}
+.center {
     width: 80%;
+    margin: 20px auto;
+    border: 1px solid black;
+    box-shadow: 5px 5px lightslategray;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    background-color: white;
 }
-#newListBtn{
-    width: 80%;
-    margin: 5px;
+.line {
+    border-bottom: 1px solid lightblue;
+    margin: 0;
 }
-.page {
+.spread{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+}
+.listofNames{
+    padding: 20px 40px;
     width: 100%;
-    height: 100%;
 }
-.task {
-    display: flex;
-    margin: 10px;
+.deleteList {
+    width: 100%;
+    background-color: white;
+    border: none;
+    color: red;
+    border-radius: 5px;
 }
-.icon:hover{
-    cursor: pointer;
+.deleteList:hover{
+    background-color: red;
+    color: white;
 }
-form {
-    margin-right: 36px;
-    margin-left: 36px;
-}
-.entryline {
-    display: flex;
+.newTask {
+    border: none;
+    width: 100%;
+    border-bottom: 2px solid darkgray;
 }

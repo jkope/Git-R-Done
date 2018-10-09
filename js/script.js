@@ -23,13 +23,13 @@ function tabs(listNames, exclude) {
                     <h3>${listNames[i]}</h3>
                     <div id="task${i}"> 
                     </div>
-                    <div>
-                        <input class="newTask" type="text" placeholder="New Task..." id="newTask${i}">
-                    </div>
-                        <button onclick="addTask('${i}')">
+                    <form onsubmit="addTask(${i})">
+                      <input class="newTask" type="text" placeholder="New Task..." id="newTask${i}">
+                    </form>
+                        <button onclick="addTask(${i})">
                             ADD
                         </button>
-                    <button onclick="deleteList('${i}')" class="deleteList">
+                    <button onclick="deleteList(${i})" class="deleteList">
                         Delete List
                     </button>
                 </div>    
@@ -41,6 +41,7 @@ function tabs(listNames, exclude) {
     badges();
 }
 
+document.getElementsByName('form')
 function listReturn(evt) {
     (evt.keyCode === 13) ? NewList() : '';
 }
@@ -64,23 +65,22 @@ function deleteList(i) {
     tabs(listNames, true);
     addTask(listNames.length-1, true);
 }
-// function taskReturn(evt) {
-//     (evt.keyCode === 13) ? addTask(/*I need to pass the id from the parent div*/) : '';
-// }
-// listNameInput.addEventListener('keydown', taskReturn);
 
 function addTask(listnum, exclude) {
     let newTaskId = 'newTask' + listnum;
     let input = document.getElementById(newTaskId).value;
-    exclude ? '' : (taskList[listnum]).push(input);
+    let task = {title: input, isChecked: false};
+    exclude ? '' : (taskList[listnum]).push(task);
     document.getElementById(newTaskId).value = '';
     taskListHtml = '';
     for (let i = 0; i < taskList[listnum].length; i++) {
         
         taskListHtml +=
             `<div id='${i}' class="form-group form-check spread line">
-                <input type="checkbox" class="form-check-input" value='' id="check${listnum}-${i}">
-                <label class="form-check-label" for="check${i}">${taskList[listnum][i]}</label>
+                <input type="checkbox" class="form-check-input" onclick="swap(${listnum},${i})" id="check${listnum}-${i}" ${taskList[listnum][i].isChecked ? 'checked' : ''}>
+                <div id="tasker">
+                <label class="form-check-label" onclick="edit(${listnum}, ${i})" for="check${i}">${taskList[listnum][i].title}</label>
+                </div>
                 <div>
                 <i class="far fa-trash-alt" onclick='deleteTask(${i} ,${listnum}, ${i})'></i>
                 </div>
@@ -89,6 +89,24 @@ function addTask(listnum, exclude) {
     document.getElementById('task'+listnum).innerHTML = taskListHtml;
     badges();
 };
+
+function edit(listnum, i){
+    document.getElementById('tasker').innerHTML =
+    `<form onsubmit="editTask(${listnum}, ${i})">
+        <input class="newTask" type="text" value="${taskList[listnum][i].title}">
+    </form>`
+
+}
+function editTask(listnum,i){
+    let newTitle = document.getElementById('edit').value;
+    taskList[listnum][i].title = newTitle;
+    addTask(listnum, true)
+};
+
+function swap(listnum,i){
+    taskList[listnum][i].isChecked ? taskList[listnum][i].isChecked = false : taskList[listnum][i].isChecked = true;
+};
+
 function badges(){
   for (let i=0; i<listNames.length; i++ ){
     document.getElementById('badge' + i).innerHTML = taskList[i].length;
