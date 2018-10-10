@@ -1,5 +1,5 @@
-let listNames = [];
-let taskList = [];
+let listNames = localStorage.getItem('names') ? JSON.parse(localStorage.getItem('names')) : [] ;
+let taskList = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : [] ;
 let listNameInput = document.getElementById('newListName');
 let headerTabs = document.getElementById('lists');
 let listBtn = document.getElementById('newListBtn');
@@ -8,6 +8,12 @@ let hTabs = '';
 let main = '';
 let page = '';
 let taskListHtml = '';
+
+document.addEventListener("DOMContentLoaded", event => { 
+    tabs(listNames,true)
+    addTask(listNames.length-1, true)
+
+});
 
 
 function tabs(listNames, exclude) {
@@ -37,6 +43,7 @@ function tabs(listNames, exclude) {
     headerTabs.innerHTML = hTabs;
     pages.innerHTML = main;
     exclude ? '' : taskList.push([]);
+    localStorage.setItem('lists', JSON.stringify(taskList));
     badges();
 }
 
@@ -48,6 +55,7 @@ listNameInput.addEventListener('keydown', listReturn);
 
 function NewList(){
     listNames.push(listNameInput.value);
+    localStorage.setItem('names', JSON.stringify(listNames));
     listNameInput.value = '';
     tabs(listNames, false);
 }
@@ -56,11 +64,14 @@ function deleteTask(task, listnum, tasknum) {
     let line = document.getElementById(task);
     line.parentNode.removeChild(line);
     taskList[listnum].splice(tasknum, 1);
+    localStorage.setItem('lists', JSON.stringify(taskList));
     document.getElementById('badge' + listnum).innerHTML = taskList[listnum].length;
 }
 function deleteList(i) {
     listNames.splice(i, 1);
+    localStorage.setItem('names', JSON.stringify(listNames));
     taskList.splice(i, 1);
+    localStorage.setItem('lists', JSON.stringify(taskList));
     tabs(listNames, true);
     addTask(listNames.length-1, true);
 }
@@ -70,6 +81,7 @@ function addTask(listnum, exclude) {
     let input = document.getElementById(newTaskId).value;
     let task = {title: input, isChecked: false};
     exclude ? '' : (taskList[listnum]).push(task);
+    localStorage.setItem('lists', JSON.stringify(taskList));
     document.getElementById(newTaskId).value = '';
     taskListHtml = '';
     for (let i = 0; i < taskList[listnum].length; i++) {
@@ -99,11 +111,13 @@ function edit(listnum, i){
 function editTask(listnum,i){
     let newTitle = document.getElementById('edit').value;
     taskList[listnum][i].title = newTitle;
+    localStorage.setItem('lists', JSON.stringify(taskList));
     addTask(listnum, true)
 };
 
 function swap(listnum,i){
     taskList[listnum][i].isChecked ? taskList[listnum][i].isChecked = false : taskList[listnum][i].isChecked = true;
+    localStorage.setItem('lists', JSON.stringify(taskList));
 };
 
 function badges(){
