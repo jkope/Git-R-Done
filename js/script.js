@@ -89,7 +89,7 @@ function addTask(listnum, exclude) {
         taskListHtml +=
             `<div id='${i}' class="form-group form-check spread line">
                 <input type="checkbox" class="form-check-input" onclick="swap(${listnum},${i})" id="check${listnum}-${i}" ${taskList[listnum][i].isChecked ? 'checked' : ''}>
-                <div id="tasker${i}">
+                <div id="tasker${listnum}-${i}">
                 <label class="form-check-label" onclick="edit(${listnum}, ${i})" for="check${i}">${taskList[listnum][i].title}</label>
                 </div>
                 <div>
@@ -102,14 +102,14 @@ function addTask(listnum, exclude) {
 };
 
 function edit(listnum, i){
-    document.getElementById('tasker'+i).innerHTML =
+    document.getElementById('tasker'+listnum+'-'+i).innerHTML =
     `<form onsubmit="editTask(${listnum}, ${i}); return false">
-        <input  id="edit" class="newTask" type="text" value="${taskList[listnum][i].title}">
+        <input  id="edit${listnum}-${i}" class="newTask" type="text" value="${taskList[listnum][i].title}">
     </form>`
 
 }
 function editTask(listnum,i){
-    let newTitle = document.getElementById('edit').value;
+    let newTitle = document.getElementById('edit'+listnum+'-'+i).value;
     taskList[listnum][i].title = newTitle;
     localStorage.setItem('lists', JSON.stringify(taskList));
     addTask(listnum, true)

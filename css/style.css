@@ -26,6 +26,9 @@ h2 {
     border-bottom: 1px solid lightblue;
     margin: 0;
 }
+input:focus {
+    outline: none;
+}
 .spread{
     display: flex;
     justify-content: space-between;
