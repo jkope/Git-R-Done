@@ -22,7 +22,7 @@ function tabs(listNames, exclude) {
     for (i = 0; i < listNames.length; i++) {
         hTabs +=
         `<a onclick='addTask(${i}, true)' class="list-group-item list-group-item-action ${i===listNames.length-1 ? 'active' : ''}" id="link-${i}" data-toggle="list" href="#l${i}"
-                role="tab" aria-controls=""><span id='badge${i}' class="badge badge-primary badge-pill pad"></span>${listNames[i]}</a>`
+                role="tab" aria-controls=""><span id='badge${i}' class="badge badge-primary badge-pill mybadge"></span>${listNames[i]}</a>`
                 main +=
            `<div id="l${i}" class="tab-pane fade show ${i === listNames.length-1 ? 'show active' : ''}" role="tabpanel" aria-labelledby="list-home-list">
                 <div class="center">
@@ -66,6 +66,7 @@ function deleteTask(task, listnum, tasknum) {
     taskList[listnum].splice(tasknum, 1);
     localStorage.setItem('lists', JSON.stringify(taskList));
     document.getElementById('badge' + listnum).innerHTML = taskList[listnum].length;
+    addTask(listnum, true);
 }
 function deleteList(i) {
     listNames.splice(i, 1);
@@ -84,6 +85,7 @@ function addTask(listnum, exclude) {
     localStorage.setItem('lists', JSON.stringify(taskList));
     document.getElementById(newTaskId).value = '';
     taskListHtml = '';
+    button = '';
     for (let i = 0; i < taskList[listnum].length; i++) {
         
         taskListHtml +=
@@ -96,8 +98,13 @@ function addTask(listnum, exclude) {
                 <i class="far fa-trash-alt" onclick='deleteTask(${i} ,${listnum}, ${i})'></i>
                 </div>
             </div>`;
+    if(taskList[listnum][i].isChecked){
+        button = `<button onclick="clearChecked(${listnum})" class="deletemulti">
+                        Clear all Checked Tasks
+                    </button>`
+        }
     }
-    document.getElementById('task'+listnum).innerHTML = taskListHtml;
+    document.getElementById('task'+listnum).innerHTML = taskListHtml+button;
     badges();
 };
 
@@ -118,6 +125,7 @@ function editTask(listnum,i){
 function swap(listnum,i){
     taskList[listnum][i].isChecked ? taskList[listnum][i].isChecked = false : taskList[listnum][i].isChecked = true;
     localStorage.setItem('lists', JSON.stringify(taskList));
+    addTask(listnum, true);
 };
 
 function badges(){
@@ -125,3 +133,18 @@ function badges(){
     document.getElementById('badge' + i).innerHTML = taskList[i].length;
     }
 };
+
+function clearChecked(listnum){
+    for (let i =0;i<taskList[listnum].length; i++){
+        if (taskList[listnum][i].isChecked){
+            let line = document.getElementById(i);
+            line.parentNode.removeChild(line);
+            taskList[listnum].splice(i, 1);
+            localStorage.setItem('lists', JSON.stringify(taskList));
+            document.getElementById('badge' + listnum).innerHTML = taskList[listnum].length;
+        } else{
+            '';
+        }
+    }
+    addTask(listnum, true);
+}

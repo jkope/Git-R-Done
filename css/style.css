@@ -4,6 +4,10 @@ body{
 .pad{
    margin: 10px;
 }
+.mybadge{
+    margin: 10px;
+    background-color: #8798b2;
+}
 h5{
     color:gray;
 }
@@ -45,9 +49,20 @@ input:focus {
     color: red;
     border-radius: 5px;
 }
+.deletemulti{
+    width: 100%;
+    background-color: white;
+    /* margin-top: 25px; */
+    border: none;
+    color: black;
+    border-radius: 5px;
+}
 .deleteList:hover{
     background-color: red;
     color: white;
+}
+.deletemulti:hover{
+    background-color: lightblue;
 }
 .newTask {
     border: none;
