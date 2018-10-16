@@ -52,7 +52,6 @@ input:focus {
 .deletemulti{
     width: 100%;
     background-color: white;
-    /* margin-top: 25px; */
     border: none;
     color: black;
     border-radius: 5px;
@@ -70,3 +69,7 @@ input:focus {
     border-radius: 5px;
     border-bottom: 2px solid darkgray;
 }
+.tsk {
+    display: inline-block;
+}
+

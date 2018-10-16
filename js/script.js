@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", event => {
 });
 
 
+
 function tabs(listNames, exclude) {
     hTabs = '';
     main = '';
@@ -73,8 +74,12 @@ function deleteList(i) {
     localStorage.setItem('names', JSON.stringify(listNames));
     taskList.splice(i, 1);
     localStorage.setItem('lists', JSON.stringify(taskList));
-    tabs(listNames, true);
-    addTask(listNames.length-1, true);
+    $('.center').toggle('bounce', {times:2}, 'slow');
+    setTimeout(function () {
+        tabs(listNames, true);
+        addTask(listNames.length - 1, true);
+    }, 800);
+    
 }
 
 function addTask(listnum, exclude) {
@@ -95,7 +100,7 @@ function addTask(listnum, exclude) {
                 <label class="form-check-label" onclick="edit(${listnum}, ${i})" for="check${i}">${taskList[listnum][i].title}</label>
                 </div>
                 <div>
-                <i class="far fa-trash-alt" onclick='deleteTask(${i} ,${listnum}, ${i})'></i>
+                <i class=" tsk far fa-trash-alt" onclick='deleteTask(${i} ,${listnum}, ${i})'></i>
                 </div>
             </div>`;
     if(taskList[listnum][i].isChecked){
@@ -107,6 +112,7 @@ function addTask(listnum, exclude) {
     document.getElementById('task'+listnum).innerHTML = taskListHtml+button;
     badges();
 };
+
 
 function edit(listnum, i){
     document.getElementById('tasker'+listnum+'-'+i).innerHTML =
