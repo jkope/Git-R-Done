@@ -84,8 +84,8 @@ function deleteList(i) {
 
 function addTask(listnum, exclude) {
     let newTaskId = 'newTask' + listnum;
-    let input = document.getElementById(newTaskId).value;
-    let task = {title: input, isChecked: false};
+    let input = document.getElementById(newTaskId);
+    let task = {title: input.value, isChecked: false};
     exclude ? '' : (taskList[listnum]).push(task);
     localStorage.setItem('lists', JSON.stringify(taskList));
     document.getElementById(newTaskId).value = '';
@@ -141,16 +141,18 @@ function badges(){
 };
 
 function clearChecked(listnum){
-    for (let i =0;i<taskList[listnum].length; i++){
+    for (let i =taskList[listnum].length-1;i>=0; i--){
         if (taskList[listnum][i].isChecked){
-            let line = document.getElementById(i);
-            line.parentNode.removeChild(line);
+            // let line = document.getElementById(i);
+            // line.parentNode.removeChild(line);
             taskList[listnum].splice(i, 1);
-            localStorage.setItem('lists', JSON.stringify(taskList));
-            document.getElementById('badge' + listnum).innerHTML = taskList[listnum].length;
         } else{
             '';
         }
     }
+
+    localStorage.setItem('lists', JSON.stringify(taskList));
+    document.getElementById('badge' + listnum).innerHTML = taskList[listnum].length;
+
     addTask(listnum, true);
 }
